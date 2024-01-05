@@ -1,27 +1,18 @@
-import { View, Text, ScrollView, TouchableWithoutFeedback, Image, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, TouchableWithoutFeedback, Image, Dimensions, StyleSheet } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
-import { fallbackMoviePoster, image185, image342, poster342 } from '../../api/movie';
-import { styles } from '../../theme';
+import { fallbackMoviePoster, image185 } from '../../api/movie';
+
 const {width, height} =  Dimensions.get('window');
 
-  const MovieList = ({title, hideSeeAll, data}) => {
+  const MovieList = ({title, data}) => {
   const navigation = useNavigation();
   return (
-    <View className="mb-8 space-y-4">
-
-      <View className="mx-4 flex-row justify-between items-center">
-        <Text className="text-white text-lg">{title}</Text>
-        {
-          !hideSeeAll && (
-            <TouchableOpacity>
-              <Text style={styles.text} className="text-lg">See All</Text>
-            </TouchableOpacity>
-          )
-        }
-
-
+    <View>
+      <View>
+        <Text style={styles.titlestyle}>{title}</Text>
       </View>
+
       <ScrollView 
         horizontal 
         showsHorizontalScrollIndicator={false}
@@ -34,14 +25,12 @@ const {width, height} =  Dimensions.get('window');
                       key={index} 
                       onPress={()=> navigation.push('Movie', item)}
                     >
-                        <View className="space-y-1 mr-4">
+                        <View>
                             <Image 
-                              // source={require('../assets/images/moviePoster2.png')}
                               source={{uri: image185(item.poster_path) || fallbackMoviePoster}} 
-                              className="rounded-3xl" 
-                              style={{ width: width*.33, height: height*.22}} 
+                              style={styles.imageStyle} 
                             />
-                            <Text className="text-neutral-300 ml-1">
+                            <Text style={styles.movieListStyle}>
                                 {
                                     item.title.length>14? item.title.slice(0,14)+'...': item.title
                                 }
@@ -56,5 +45,27 @@ const {width, height} =  Dimensions.get('window');
   )
 }
 
+
+const styles = StyleSheet.create({
+  imageStyle:  {
+    width: width*.33,
+    height: height*.23,
+    borderRadius: 15,
+    marginRight: 15,
+    marginTop: 12,
+    marginBottom: 5
+  },
+  titlestyle: {
+    color: "#f1f5f9",
+    left: 16,
+    fontSize: 18
+  },
+  movieListStyle: {
+    color: "rgba(255, 255, 255, .76)",
+    marginTop: 5,
+    left: 2.5,
+    fontSize: 16
+  }
+})
 
 export default MovieList

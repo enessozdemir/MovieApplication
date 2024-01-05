@@ -8,40 +8,21 @@ var { width, height } = Dimensions.get('window');
 
 const TrendingMovies = ({ data }) => {
     const navigation = useNavigation();
-    const [activeDotIndex, setActiveDotIndex] = useState(10);
+    const [activeDotIndex, setActiveDotIndex] = useState((data.length) / 2);
     const _carousel = useRef();
-
-    /*
-    const renderMovies = ({ item, index }) => {
-        return (
-            <View>
-                <Image
-                    source={item.image}
-                    style={{
-                        height: Dimensions.get("window").width * 1.2,
-                        width: Dimensions.get("window").width * 0.94,
-                        marginTop: 10,
-                        marginLeft: Dimensions.get("window").width * 0.03,
-                        borderRadius: 20
-                    }}
-                />
-            </View>
-        );
-    };
-    */
 
     const handleClick = item => {
         navigation.navigate('Movie', item);
     }
 
     return (
-        <View style={{ height: "100%"}}>
+        <View style={{ backgroundColor: "rgba(17, 18, 16, 1)" ,height: "100%"}}>
             <Text style={styles.basic}>Popular Movies</Text>
             <Carousel
                 ref={_carousel}
                 data={data}
                 renderItem={({ item }) => <MovieCard handleClick={handleClick} item={item} />}
-                firstItem={10}
+                firstItem={(data.length) / 2}
                 inactiveSlideOpacity={0.70}
                 sliderWidth={width * 1}
                 itemWidth={width * 0.82}
@@ -62,7 +43,7 @@ const TrendingMovies = ({ data }) => {
                             top: 19
                         }}
                     >
-                        <Ionicons name="chevron-back-outline" color={'black'} size={27} style={{ top: 1, left: 1 }} />
+                        <Ionicons name="chevron-back-outline" color={'gray'} size={27} style={{ top: 1, left: 1 }} />
                     </View>
                 </TouchableWithoutFeedback>
                 <Pagination
@@ -72,12 +53,12 @@ const TrendingMovies = ({ data }) => {
                     dotContainerStyle={{ width: 0 }}
                     dotStyle={{
                         width: 15,
-                        backgroundColor: 'orange',
+                        backgroundColor: '#0284c7',
                     }}
                     inactiveDotStyle={{
                         width: 10,
                         height: 10,
-                        backgroundColor: 'gray',
+                        backgroundColor: 'white',
                     }}
                 />
 
@@ -90,12 +71,11 @@ const TrendingMovies = ({ data }) => {
                             height: 30,
                             width: 30,
                             borderRadius: 15,
-
                             right: 10,
                             top: 19
                         }}
                     >
-                        <Ionicons name="chevron-forward-outline" color={'black'} size={27} style={{ top: 1, left: 2 }} />
+                        <Ionicons name="chevron-forward-outline" color={'gray'} size={27} style={{ top: 1, left: 2 }} />
                     </View>
                 </TouchableWithoutFeedback>
             </SafeAreaView>
@@ -111,7 +91,7 @@ const MovieCard = ({ item, handleClick }) => {
                 source={{ uri: image500(item.poster_path) }}
                 style={{
                     width: width * 0.82,
-                    height: height * 0.6,
+                    height: height * 0.7,
                     marginHorizontal: width * 0.05,
                     borderRadius: 15
                 }}
@@ -123,16 +103,17 @@ const MovieCard = ({ item, handleClick }) => {
 const styles = StyleSheet.create({
     basic: {
         marginBottom: 20,
-        marginTop: 10,
+        marginTop: 65,
         textAlign: "center",
         fontSize: 30,
-        letterSpacing: 5
+        letterSpacing: 5,
+        color: "white",
     },
     viewStyle: {
         display: "flex",
         flexDirection: "row",
         justifyContent: 'space-evenly',
-        marginTop: 20,
+
     }
 })
 

@@ -27,7 +27,6 @@ const [loading, setLoading] = useState(true);
         ):(
           <ScrollView 
             showsVerticalScrollIndicator={false} 
-            
           >
             { trending.length>0 && <TrendingMovies data={trending} /> }
           </ScrollView>

@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
 import MovieScreen from '../src/screens/MovieScreen';
 import FavouritesScreen from '../src/screens/FavouritesScreen';
+import { fontScale } from 'nativewind';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,32 +14,38 @@ const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: 'black',
-        tabBarInactiveTintColor: 'gray',
-        tabBarActiveBackgroundColor: 'lightgrey',
+        tabBarActiveTintColor: 'gray',
+        tabBarInactiveTintColor: '#f1f5f9',
+        tabBarActiveBackgroundColor: 'rgba(17, 18, 16, .1)',
+        headerShown: false,
+        tabBarStyle:{
+          backgroundColor: "rgba(17, 18, 16, 1)",
+          borderBlockColor: "rgba(17, 18, 16, 1)",
+        },
+        
       }}
     >
       <Tab.Screen name="Home" component={HomeScreen} options={{
-        tabBarLabel: 'Home',
+        tabBarLabel: 'Home', tabBarLabelStyle: {fontSize: 13, marginTop: 5, left: 1},
 
-        tabBarIcon: () => (
-          <Ionicons name="home-outline" color={'black'} size={30} />
-        ),
+        tabBarIcon: ({focused, color}) => (
+          <Ionicons name="home-outline" size={30} color={focused ? ("gray") : ("#f1f5f9")} />
+        ), 
       }} />
 
       <Tab.Screen name='Search' component={SearchScreen} options={{
-        tabBarLabel: 'Search',
+        tabBarLabel: 'Search', tabBarLabelStyle: {fontSize: 13, marginTop: 5, left: 3},
 
-        tabBarIcon: () => (
-          <Ionicons name="search-outline" size={30} color="black" />
+        tabBarIcon: ({ focused, color }) => (
+          <Ionicons name="search-outline" size={30} color={focused ? ("gray") : ("#f1f5f9")} />
         ),
       }} />
 
       <Tab.Screen name="Favourites" component={FavouritesScreen} options={{
-        tabBarLabel: 'Favourites',
+        tabBarLabel: 'Favourites', tabBarLabelStyle: {fontSize: 13, marginTop: 5, left: 1},
 
-        tabBarIcon: () => (
-          <Ionicons name="heart-outline" size={30} color="black" />
+        tabBarIcon: ({focused, color}) => (
+          <Ionicons name="heart-outline" size={30} color={focused ? ("gray") : ("#f1f5f9")} />
         ),
       }} />
     </Tab.Navigator>
