@@ -1,61 +1,52 @@
-import { View, Text, TextInput, Image, ScrollView, TouchableWithoutFeedback, Dimensions, FlatList, TouchableOpacity, StyleSheet } from 'react-native'
-import React, { useCallback, useState } from 'react'
+import { View, Text, TextInput, Image, ScrollView, Dimensions, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import React, { useState, useRef } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useNavigation } from '@react-navigation/native'
 import { fallbackMoviePoster, image185, searchMovies } from '../../api/movie'
-import { debounce } from 'lodash'
-import Loading from '../components/Loading'
+import Loading from '../components/Loading';
+import { FontAwesome } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
 
-
-export default function SearchScreen() {
-  const navigation = useNavigation();
+const SearchScreen = () => {
   const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState([])
+  const [results, setResults] = useState([]);
+  const navigation = useNavigation();
 
-  const handleSearch = search => {
+  const ref = useRef(null);
+  const handleClick = () => {
+    ref.current.focus();
+  };
+
+  const handleSearch = (search) => {
     if (search && search.length > 2) {
       setLoading(true);
       searchMovies({
         query: search,
-        include_adult: false,
         language: 'en-US',
         page: '1'
       }).then(data => {
-
         setLoading(false);
         if (data && data.results) setResults(data.results);
-      })
+      }).catch(err => alert(err))
     } else {
       setLoading(false);
       setResults([])
     }
   }
-  const handleTextDebounce = useCallback(debounce(handleSearch, 400), []);
 
   return (
     <SafeAreaView style={styles.bgStyle}>
-      <View  >
+      <TouchableOpacity style={styles.searchStyle} onPress={handleClick} >
+        <FontAwesome style={styles.iconStyle} name="search" size={28} color="gray" />
         <TextInput
-          onChangeText={handleTextDebounce}
+          ref={ref}
+          onChangeText={handleSearch}
           placeholder="Search Here"
-          placeholderTextColor={'black'}
-          style={{
-            backgroundColor: 'lightgrey', padding: 10,
-            marginTop: 40,
-            marginLeft: 10,
-            marginRight: 10,
-            borderRadius: 20,
-            marginBottom: 10
-          }}
-
-
+          placeholderTextColor={'gray'}
+          style={styles.inputStyle}
         />
-
-      </View>
-
-
+      </TouchableOpacity>
       {
         loading ? (
           <Loading />
@@ -117,17 +108,16 @@ export default function SearchScreen() {
             </ScrollView>
           ) : (
             <View className="flex-row justify-center">
-                    <Image 
-                        source={require('../../assets/images/popcorn.png')} 
-                        style={styles.imageStyle}
-                    />
+              <Image
+                source={require('../../assets/images/popcorn.png')}
+                style={styles.imageStyle}
+              />
             </View>
           )
       }
     </SafeAreaView>
   )
 }
-
 
 const styles = StyleSheet.create({
   bgStyle: {
@@ -137,8 +127,29 @@ const styles = StyleSheet.create({
   imageStyle: {
     width: width * 0.8,
     height: height * 0.4,
-    marginTop:100,
-    marginLeft:width * .1,
+    marginTop: 100,
+    marginLeft: width * .1,
     opacity: 0.5
+  },
+  searchStyle: {
+    backgroundColor: "#94a3b8",
+    height: 40,
+    borderRadius: 20,
+    marginHorizontal: 10,
+    flexDirection: "row",
+    marginTop: 17,
+    marginBottom: 10
+  },
+  inputStyle: {
+    fontSize: 20,
+    marginTop: 2
+  },
+  iconStyle: {
+    alignSelf: "center",
+    marginLeft: 15,
+    marginRight: 10
   }
 })
+
+
+export default SearchScreen;

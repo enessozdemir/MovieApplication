@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 30,
         letterSpacing: 5,
-        color: "white",
+        color: "#f1f5f9",
     },
     viewStyle: {
         display: "flex",

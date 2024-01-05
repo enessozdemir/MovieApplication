@@ -61,10 +61,10 @@ const MovieScreen = () => {
                         <View style={styles.generalStyle}>
                             <SafeAreaView style={styles.buttonsStyle}>
                                 <TouchableOpacity style={styles.backStyle} onPress={() => navigation.goBack()}>
-                                    <ChevronLeftIcon size="32" strokeWidth={2.5} color="black" />
+                                    <ChevronLeftIcon size="32" strokeWidth={2.5} color="black" style={{marginTop:3,marginRight:2}}/>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => toggleFavourite(!isFavourite)}>
-                                    <HeartIcon size="38" color={isFavourite ? "#e11d48" : '#f0a5cb'}  />
+                                    <HeartIcon size="45" color={isFavourite ? "#e11d48" : '#f0a5cb'}  />
                                 </TouchableOpacity>
                             </SafeAreaView>
                             <Image
