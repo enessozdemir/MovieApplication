@@ -2,7 +2,6 @@ import { View, Text, Image, Dimensions, TouchableOpacity, ScrollView, Platform, 
 import React, { useEffect, useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { ChevronLeftIcon } from 'react-native-heroicons/outline';
-import { HeartIcon } from 'react-native-heroicons/solid';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Cast from '../components/cast';
 import MovieList from '../components/MovieList'
@@ -19,7 +18,6 @@ const MovieScreen = () => {
     const [movie, setMovie] = useState({});
     const [cast, setCast] = useState([])
     const [similarMovies, setSimilarMovies] = useState([])
-    const [isFavourite, toggleFavourite] = useState(false);
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -63,15 +61,11 @@ const MovieScreen = () => {
                                 <TouchableOpacity style={styles.backStyle} onPress={() => navigation.goBack()}>
                                     <ChevronLeftIcon size="32" strokeWidth={2.5} color="black" style={{marginTop:3,marginRight:2}}/>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => toggleFavourite(!isFavourite)}>
-                                    <HeartIcon size="45" color={isFavourite ? "#e11d48" : '#f0a5cb'}  />
-                                </TouchableOpacity>
                             </SafeAreaView>
                             <Image
                                 source={{ uri: image342(movie.poster_path) || fallbackMoviePoster }}
                                 style={styles.imageStyle}
                             />
-
                             <View style={styles.infoStyle}>
                                 <Text style={styles.titleStyle}>
                                     {

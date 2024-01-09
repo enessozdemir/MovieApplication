@@ -4,7 +4,6 @@ import axios from "axios";
 const apiBaseUrl = 'https://api.themoviedb.org/3';
 const apiKey = "bf4a763b189ccc4cd91190cae84597c9";
 const trendingMoviesEndpoint = `${apiBaseUrl}/trending/movie/day?api_key=${apiKey}`;
-const upcomingMoviesEndpoint = `${apiBaseUrl}/movie/upcoming?api_key=${apiKey}`;
 const topRatedMoviesEndpoint = `${apiBaseUrl}/movie/top_rated?api_key=${apiKey}`;
 const searchMoviesEndpoint = `${apiBaseUrl}/search/movie?api_key=${apiKey}`;
 

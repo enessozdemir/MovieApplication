@@ -1,5 +1,5 @@
 import { View, ScrollView } from 'react-native'
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import TrendingMovies from '../components/trendingMovies';
 import { fetchTrendingMovies } from '../../api/movie';
 import Loading from '../components/Loading';
@@ -7,34 +7,34 @@ import Loading from '../components/Loading';
 
 const HomeScreen = () => {
 
-const [trending, setTrending] = useState([]);
-const [loading, setLoading] = useState(true);
+  const [trending, setTrending] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-    getTrendingMovies();  
-  },[]);
+  useEffect(() => {
+    getTrendingMovies();
+  }, []);
 
-  const getTrendingMovies = async ()=>{
+  const getTrendingMovies = async () => {
     const data = await fetchTrendingMovies();
-    if(data && data.results) setTrending(data.results);
+    if (data && data.results) setTrending(data.results);
     setLoading(false)
   }
-    return (
-        <View>
+  return (
+    <View>
       {
-        loading? (
+        loading ? (
           <Loading />
-        ):(
-          <ScrollView 
-            showsVerticalScrollIndicator={false} 
+        ) : (
+          <ScrollView
+            showsVerticalScrollIndicator={false}
           >
-            { trending.length>0 && <TrendingMovies data={trending} /> }
+            {trending.length > 0 && <TrendingMovies data={trending} />}
           </ScrollView>
         )
       }
-      
-  </View>
-    );
+
+    </View>
+  );
 };
 
 

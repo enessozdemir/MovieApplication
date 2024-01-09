@@ -2,11 +2,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeScreen from '../src/screens/HomeScreen'
 import SearchScreen from '../src/screens/SearchScreen';
+import MovieScreen from '../src/screens/MovieScreen';
+import TopScreen from '../src/screens/TopScreen';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Ionicons } from '@expo/vector-icons';
-import MovieScreen from '../src/screens/MovieScreen';
-import FavouritesScreen from '../src/screens/FavouritesScreen';
-import { fontScale } from 'nativewind';
 
 const Tab = createBottomTabNavigator();
 
@@ -14,7 +13,7 @@ const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: 'gray',
+        tabBarActiveTintColor: '#0284c7',
         tabBarInactiveTintColor: '#f1f5f9',
         tabBarActiveBackgroundColor: 'rgba(17, 18, 16, .1)',
         headerShown: false,
@@ -29,7 +28,7 @@ const Tabs = () => {
         tabBarLabel: 'Home', tabBarLabelStyle: {fontSize: 13, marginTop: 5, left: 1},
 
         tabBarIcon: ({focused, color}) => (
-          <Ionicons name="home-outline" size={30} color={focused ? ("gray") : ("#f1f5f9")} />
+          <Ionicons name="home-outline" size={30} color={focused ? ("#0284c7") : ("#f1f5f9")} />
         ), 
       }} />
 
@@ -37,15 +36,15 @@ const Tabs = () => {
         tabBarLabel: 'Search', tabBarLabelStyle: {fontSize: 13, marginTop: 5, left: 3},
 
         tabBarIcon: ({ focused, color }) => (
-          <Ionicons name="search-outline" size={30} color={focused ? ("gray") : ("#f1f5f9")} />
+          <Ionicons name="search-outline" size={30} color={focused ? ("#0284c7") : ("#f1f5f9")} />
         ),
       }} />
 
-      <Tab.Screen name="Favourites" component={FavouritesScreen} options={{
-        tabBarLabel: 'Favourites', tabBarLabelStyle: {fontSize: 13, marginTop: 5, left: 1},
+      <Tab.Screen name="Top" component={TopScreen} options={{
+        tabBarLabel: 'Best Movies', tabBarLabelStyle: {fontSize: 13, marginTop: 5, left: 1},
 
         tabBarIcon: ({focused, color}) => (
-          <Ionicons name="heart-outline" size={30} color={focused ? ("gray") : ("#f1f5f9")} />
+          <Ionicons name="medal-outline" size={30} color={focused ? ("#0284c7") : ("#f1f5f9")} />
         ),
       }} />
     </Tab.Navigator>
