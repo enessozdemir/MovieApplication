@@ -5,11 +5,8 @@ import { ChevronLeftIcon } from 'react-native-heroicons/outline';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Cast from '../components/cast';
 import MovieList from '../components/MovieList'
-import { fallbackMoviePoster, fetchMovieCredits, fetchMovieDetails, fetchSimilarMovies, image342, image500 } from '../../api/movie';
+import { fallbackMoviePoster, fetchMovieCredits, fetchMovieDetails, fetchSimilarMovies, image342 } from '../../api/movie';
 import Loading from '../components/Loading';
-
-const ios = Platform.OS == 'ios';
-const topMargin = ios ? '' : ' mt-3';
 var { width, height } = Dimensions.get('window');
 
 const MovieScreen = () => {
@@ -39,7 +36,6 @@ const MovieScreen = () => {
         if (data && data.cast) {
             setCast(data.cast);
         }
-
     }
 
     const getSimilarMovies = async id => {
@@ -47,7 +43,6 @@ const MovieScreen = () => {
         if (data && data.results) {
             setSimilarMovies(data.results);
         }
-
     }
     return (
         <ScrollView>
@@ -75,7 +70,7 @@ const MovieScreen = () => {
                                 {
                                     movie?.id ? (
                                         <Text style={styles.idStyle}>
-                                            {movie?.release_date?.split('-')[0] || 'N/A'} • {movie?.runtime} minutes
+                                            {movie?.release_date?.split('-')[0]} • {movie?.runtime} minutes
                                         </Text>
                                     ) : null
                                 }

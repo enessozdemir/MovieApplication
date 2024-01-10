@@ -16,7 +16,7 @@ const TrendingMovies = ({ data }) => {
     }
 
     return (
-        <View style={{ backgroundColor: "rgba(17, 18, 16, 1)" ,height: "100%"}}>
+        <View style={{ backgroundColor: "rgba(17, 18, 16, 1)", height: "100%" }}>
             <Text style={styles.basic}>Popular Movies</Text>
             <Carousel
                 ref={_carousel}

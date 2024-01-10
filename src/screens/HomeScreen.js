@@ -4,9 +4,7 @@ import TrendingMovies from '../components/trendingMovies';
 import { fetchTrendingMovies } from '../../api/movie';
 import Loading from '../components/Loading';
 
-
 const HomeScreen = () => {
-
   const [trending, setTrending] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -36,8 +34,5 @@ const HomeScreen = () => {
     </View>
   );
 };
-
-
-
 
 export default HomeScreen;

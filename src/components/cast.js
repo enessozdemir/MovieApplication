@@ -1,8 +1,8 @@
 import { View, Text, ScrollView, Dimensions, StyleSheet } from 'react-native'
 import React from 'react'
-var { width, height } = Dimensions.get('window');
+var { width } = Dimensions.get('window');
 
-export default function Cast({ cast, navigation }) {
+const Cast = ({ cast }) => {
     return (
         <View>
             <Text style={styles.textStyle}>Popular Cast</Text>
@@ -18,7 +18,7 @@ export default function Cast({ cast, navigation }) {
                                 <Text style={styles.listTextStyle}>
                                     {
                                         person?.original_name
-                                    } <Text style={{color: "#0284c7"}}>as</Text>
+                                    } <Text style={{ color: "#0284c7" }}>as</Text>
                                 </Text>
                                 <Text style={styles.listTextStyle}>
                                     {
@@ -53,3 +53,5 @@ const styles = StyleSheet.create({
 
     }
 })
+
+export default Cast;

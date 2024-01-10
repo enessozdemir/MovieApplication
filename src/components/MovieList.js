@@ -2,7 +2,6 @@ import { View, Text, ScrollView, TouchableWithoutFeedback, Image, Dimensions, St
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { fallbackMoviePoster, image185 } from '../../api/movie';
-
 const {width, height} =  Dimensions.get('window');
 
   const MovieList = ({title, data}) => {
@@ -44,7 +43,6 @@ const {width, height} =  Dimensions.get('window');
     </View>
   )
 }
-
 
 const styles = StyleSheet.create({
   imageStyle:  {

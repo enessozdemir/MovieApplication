@@ -1,21 +1,19 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
 import TopMovies from '../components/topMovies';
 import React, { useEffect, useState } from 'react';
 import { fetchTopRatedMovies } from '../../api/movie';
 import Loading from '../components/Loading';
 
-
 const TopScreen = () => {
-  const [topRated, setTopRated] = useState([]);
+  const [topMovies, setTopMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-
 
   useEffect(()=>{
     getTopRatedMovies();
   },[]);
   const getTopRatedMovies = async ()=>{
     const data = await fetchTopRatedMovies();
-    if(data && data.results) setTopRated(data.results);
+    if(data && data.results) setTopMovies(data.results);
     setLoading(false)
   }
 
@@ -28,11 +26,10 @@ const TopScreen = () => {
           <ScrollView 
             showsVerticalScrollIndicator={false} 
           >
-           { topRated.length>0 && <TopMovies title="Top Rated" data={topRated} /> }
+           { topMovies.length>0 && <TopMovies title="Top Rated" data={topMovies} /> }
           </ScrollView>
         )
-      }
-      
+      }     
   </View>
   )
 }

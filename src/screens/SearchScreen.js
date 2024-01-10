@@ -12,8 +12,8 @@ const SearchScreen = () => {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
   const navigation = useNavigation();
-
   const ref = useRef(null);
+  
   const handleClick = () => {
     ref.current.focus();
   };
@@ -107,7 +107,7 @@ const SearchScreen = () => {
               </View>
             </ScrollView>
           ) : (
-            <View className="flex-row justify-center">
+            <View>
               <Image
                 source={require('../../assets/images/popcorn.png')}
                 style={styles.imageStyle}

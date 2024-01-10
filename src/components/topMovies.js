@@ -1,15 +1,11 @@
 import { View, Text, Image, TouchableWithoutFeedback, Dimensions, StyleSheet } from 'react-native'
-import React, { useState, useRef } from 'react'
+import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { image500 } from '../../api/movie';
 var { width, height } = Dimensions.get('window');
 
 const TopMovies = ({ data }) => {
     const navigation = useNavigation();
-
-    const handleClick = item => {
-        navigation.navigate('Movie', item);
-    }
 
     return (
         <View style={{ backgroundColor: "rgba(17, 18, 16, 1)" ,height: "auto"}}>
@@ -59,23 +55,6 @@ const TopMovies = ({ data }) => {
     )
 }
 
-const MovieCard = ({ item, handleClick }) => {
-
-    return (
-        <TouchableWithoutFeedback onPress={() => handleClick(item)}>
-            <Image
-                source={{ uri: image500(item.poster_path) }}
-                style={{
-                    width: width * 0.82,
-                    height: height * 0.7,
-                    marginHorizontal: width * 0.05,
-                    borderRadius: 15
-                }}
-            />
-        </TouchableWithoutFeedback>
-    )
-}
-
 const styles = StyleSheet.create({
     basic: {
         marginBottom: 20,
@@ -92,6 +71,5 @@ const styles = StyleSheet.create({
 
     }
 })
-
 
 export default TopMovies;
