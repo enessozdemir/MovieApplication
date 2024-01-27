@@ -18,7 +18,7 @@ const Cast = ({ cast }) => {
                                 <Text style={styles.listTextStyle}>
                                     {
                                         person?.original_name
-                                    } <Text style={{ color: "#0284c7" }}>as</Text>
+                                    } <Text style={{ color: "white" }}>as</Text>
                                 </Text>
                                 <Text style={styles.listTextStyle}>
                                     {
